@@ -1,9 +1,4 @@
-# Attention Head Importance Scoring and Dynamic Tuning for Tabular Transformers
-
-This repository contains the code for reproducing the experiments in:
-
-> **[Paper Title]**
-> [Authors], [Venue, Year]
+# Attention Head Importance Scoring for Tabular Data
 
 We investigate the importance of individual attention heads in transformer models for tabular data. Using the [TransTab](https://github.com/RyanWangZf/transtab) architecture, we adapt the head-importance metric $I_h$ from [Michel et al. (2019)](https://arxiv.org/abs/1905.10650) and propose a dynamic tuning mechanism that continuously regulates head activations during training, followed by post-training head pruning.
 
@@ -12,27 +7,27 @@ We investigate the importance of individual attention heads in transformer model
 ## Repository Structure
 
 ```
-├── transtab/                         # Modified TransTab with head tuning support
-│   ├── modeling_transtab.py          # Head gates, I_h computation
-│   ├── dataset.py                    # Data loading from OpenML
-│   ├── evaluator.py                  # Prediction and evaluation
+├── transtab/                         
+│   ├── modeling_transtab.py         
+│   ├── dataset.py                   
+│   ├── evaluator.py                
 │   └── ...
-├── src/                              # Core modules (our contribution)
-│   ├── importance.py                 # I_h computation and normalisation
-│   ├── tuning.py                     # Gate freezing, updating from I_h
-│   ├── dropping.py                   # Progressive head dropping evaluation
-│   └── model_utils.py               # Model building and data helpers
+├── src/                             
+│   ├── importance.py               
+│   ├── tuning.py                    
+│   ├── dropping.py                 
+│   └── model_utils.py              
 ├── scripts/
-│   ├── train_vanilla.py              # Train with gates fixed at 1.0
-│   ├── train_ih_tuned.py             # Train with dynamic I_h tuning
-│   ├── evaluate_robustness.py        # Head dropping + AUC curves
-│   ├── plot_auc_barplot.py           # AUC % change bar plot
-│   ├── plot_heatmap.py               # I_h heatmap
-│   └── plot_distribution.py          # Dataset distribution figures
+│   ├── train_vanilla.py             
+│   ├── train_ih_tuned.py            
+│   ├── evaluate_robustness.py        
+│   ├── plot_auc_barplot.py           
+│   ├── plot_heatmap.py              
+│   └── plot_distribution.py         
 ├── data/
-│   └── examples/                     # Example I_h scores (JSON)
-├── checkpoints/                      # Saved model weights (git-ignored)
-├── results/                          # Figures, CSVs, JSONs (git-ignored)
+│   └── examples/                    
+├── checkpoints/                     
+├── results/                         
 ├── requirements.txt
 ├── LICENSE
 └── README.md
