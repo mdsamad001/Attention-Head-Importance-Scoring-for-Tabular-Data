@@ -38,8 +38,8 @@ We investigate the importance of individual attention heads in transformer model
 ## Setup
 
 ```bash
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/mdsamad001/Attention-Head-Importance-Scoring-for-Tabular-Data.git
+cd Attention-Head-Importance-Scoring-for-Tabular-Data
 
 conda create -n ih-tuning python=3.10 -y
 conda activate ih-tuning
@@ -53,10 +53,10 @@ pip install -r requirements.txt
 ### 1. Train models
 
 ```bash
-# Vanilla (gates fixed at 1.0)
+# Vanilla
 python scripts/train_vanilla.py --dataset pc3
 
-# I_h-tuned (dynamic gate updates after warmup)
+# I_h-tuned
 python scripts/train_ih_tuned.py --dataset pc3 --warmup 10
 ```
 
@@ -99,37 +99,17 @@ All scripts share a consistent interface:
 
 ---
 
-## Experimental Cases
-
-| Case | I_h Tuning | Head Pruning Strategy |
-|---|---|---|
-| 1 | No | None (vanilla baseline) |
-| 2 | Yes | None (I_h-tuned baseline) |
-| 3 | No | Random |
-| 4 | Yes | Random |
-| 5 | No | Prune I_h min → max |
-| 6 | Yes | Prune I_h min → max |
-| 7 | No | Prune I_h max → min |
-| 8 | Yes | Prune I_h max → min |
-
----
-
 ## Datasets
 
-All 40 binary classification datasets are from [OpenML](https://www.openml.org/) and loaded automatically via `transtab.load_data()`.
+All 40 classification datasets are from [OpenML](https://www.openml.org/).
 
 ---
 
-## Citation
+## Acknowledgements
 
-```bibtex
-@inproceedings{yourname2025,
-    title     = {Your Paper Title},
-    author    = {Your Name and Others},
-    booktitle = {Venue},
-    year      = {2025}
-}
-```
+This repository builds on the [TransTab](https://github.com/RyanWangZf/transtab) framework proposed in *TransTab: Learning Transferable Tabular Transformers Across Tables* by Zifeng Wang and Jimeng Sun. TransTab provides the transformer-based tabular learning architecture used as the foundation of this project.
+
+We also acknowledge Michel et al.'s paper, *Are Sixteen Heads Really Better than One?*, which introduced the attention-head importance analysis that inspired the $I_h$ scoring and pruning direction used in this work.
 
 ## License
 
